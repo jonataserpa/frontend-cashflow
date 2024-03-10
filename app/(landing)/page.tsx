@@ -19,7 +19,7 @@ const LandingPage = () => {
    */
   function getAllTasks() {
     debounce(() => {
-      CashFlowService.getAll("", "", undefined, "").then((result) => {
+      CashFlowService.getAll("", "", "").then((result) => {
         setIsLoading(false);
 
         if (result instanceof Error) {
