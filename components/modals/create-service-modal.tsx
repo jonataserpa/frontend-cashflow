@@ -35,13 +35,18 @@ import { CashFlowService } from "@/app/(cash)/(routes)/cash/gateways/cashService
 
 const formSchema = z.object({
   observation: z.string().optional(),
+  paymentedAt: z.string().min(1, { message: "Data é obrigatório" })
+  .refine((name) => name !== "general", {
+      message: "Data não pode ser 'generico'",
+    }),
   description: z
     .string()
     .min(1, { message: "Descrição é obrigatório" })
     .refine((name) => name !== "general", {
       message: "Descrição não pode ser 'generico'",
     }),
-  value: z.string()
+  value: z
+    .string()
     .min(1, { message: "Valor é obrigatório" })
     .refine((name) => name !== "general", {
       message: "Valor não pode ser 'generico'",
@@ -69,7 +74,8 @@ export const CreateServiceModal = () => {
       description: server?.description || "",
       type: server?.type || "",
       companyId: server?.companyId || 1,
-      value: ""
+      value: "",
+      paymentedAt: "",
     },
   });
 
@@ -85,8 +91,9 @@ export const CreateServiceModal = () => {
       form.setValue("description", server.description);
       form.setValue("observation", server.observation || "");
       form.setValue("companyId", server.companyId);
-      form.setValue("type", server.type === "ENTRY" ? "ENTRADA" : "SAÍDA" );
+      form.setValue("type", server.type === "ENTRY" ? "ENTRADA" : "SAÍDA");
       form.setValue("value", server.value);
+      form.setValue("paymentedAt", server.paymentedAt.toString());
     } else {
       form.setValue("description", "");
     }
@@ -100,8 +107,9 @@ export const CreateServiceModal = () => {
         description: values.description,
         observation: values.observation,
         value: values.value,
-        type: values.type === '1' ? "ENTRY" : "EXIT",
+        type: values.type === "1" ? "ENTRY" : "EXIT",
         companyId: 1,
+        paymentedAt: values.paymentedAt,
       };
       if (server === undefined) {
         await CashFlowService.create(cash);
@@ -185,6 +193,27 @@ export const CreateServiceModal = () => {
                         placeholder="valor"
                         {...field}
                         data-testid="value"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="paymentedAt"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Data</FormLabel>
+                    <FormControl>
+                      <Input
+                        disabled={isLoading}
+                        type="date"
+                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        placeholder="Data"
+                        {...field}
+                        data-testid="paymentedAt"
                       />
                     </FormControl>
                     <FormMessage />

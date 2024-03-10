@@ -6,4 +6,5 @@ export interface ICashFlowProps {
     type: string;
     value: string;
     createdAt?: Date;
+    paymentedAt: string;
   }
