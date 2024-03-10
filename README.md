@@ -1,22 +1,10 @@
 ## Painel
 
-![Dashboard](https://media.discordapp.net/attachments/1083115321935798314/1199815931870843040/image.png?ex=65fb49a9&is=65e8d4a9&hm=a1183a0d1e05f95705d62cec8a81f60256067533b6eade6ae793cc8c47e64b47&=&format=webp&quality=lossless&width=960&height=319)
+![Dashboard](https://cdn.discordapp.com/attachments/1083115321935798314/1216463652534882385/image.png?ex=66007b0f&is=65ee060f&hm=34b89387aae91f68900a7cebe55ae4bd43415292913af3c68584d0a564e209e7&)
 
 ## Cadastro
 
-![Cadastro](https://media.discordapp.net/attachments/1083115321935798314/1199816073378275330/image.png?ex=65fb49cb&is=65e8d4cb&hm=3a6aa060dad9e925250ef312b1308694e8de8c7c307d87519d5863485f29b102&=&format=webp&quality=lossless&width=1885&height=647)
-
-## Modal
-
-![Modal](https://cdn.discordapp.com/attachments/1083115321935798314/1199816174280654888/image.png?ex=65fb49e3&is=65e8d4e3&hm=d695e0f51212eb594571d1fde3a532199b668bd6ac41dd9932e2c4e9b2ba4ca0&)
-
-## Validação
-
-![Form](https://cdn.discordapp.com/attachments/1083115321935798314/1199816258930090044/image.png?ex=65fb49f7&is=65e8d4f7&hm=569b892ec73842620b82c39ca2bba06f068e0c717475c25ea316e5eb2f994a32&)
-
-## Mobile
-
-![Mobile](https://cdn.discordapp.com/attachments/1083115321935798314/1199816448638451732/image.png?ex=65fb4a24&is=65e8d524&hm=6a12262fb832797edf8eff268b59438492d4b3c03bd927a2e4e286b3b010145e&)
+![Cadastro](https://cdn.discordapp.com/attachments/1083115321935798314/1216464003782414397/image.png?ex=66007b63&is=65ee0663&hm=cf5da799d88b88bc1611d3ff52ef1b40bbc509314066c95e86b51ed3646b2312&)
 
 ## Description
 
