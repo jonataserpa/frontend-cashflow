@@ -276,6 +276,7 @@ const TablePage = ({
               <TableHead>Observação</TableHead>
               <TableHead>Valor</TableHead>
               <TableHead>Tipo</TableHead>
+              <TableHead>Data da fatura</TableHead>
               <TableHead>Data de criação</TableHead>
               <TableHead className="w-[10px]"></TableHead>
               <TableHead className="w-[10px]"></TableHead>
@@ -291,6 +292,7 @@ const TablePage = ({
                   <TableCell>{row.observation}</TableCell>
                   <TableCell>{row.value}</TableCell>
                   <TableCell>{row.type}</TableCell>
+                  <TableCell>{moment(row.paymentedAt).format('DD/MM/YYYY')}</TableCell>
                   <TableCell>{validateDate(row.createdAt)}</TableCell>
 
                   <TableCell className="text-right">
