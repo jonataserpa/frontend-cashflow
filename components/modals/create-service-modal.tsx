@@ -100,7 +100,7 @@ export const CreateServiceModal = () => {
         description: values.description,
         observation: values.observation,
         value: values.value,
-        type: values.type || "",
+        type: values.type === '1' ? "ENTRY" : "EXIT",
         companyId: 1,
       };
       if (server === undefined) {
