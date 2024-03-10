@@ -52,7 +52,7 @@ const formSchema = z.object({
 
 const types = [
   { id: 1, name: "ENTRADA" },
-  { id: 2, name: "SAIDA" },
+  { id: 2, name: "SAÍDA" },
 ];
 
 export const CreateServiceModal = () => {
@@ -83,8 +83,10 @@ export const CreateServiceModal = () => {
   useEffect(() => {
     if (server) {
       form.setValue("description", server.description);
+      form.setValue("observation", server.observation || "");
       form.setValue("companyId", server.companyId);
-      form.setValue("type", server.type);
+      form.setValue("type", server.type === "ENTRY" ? "ENTRADA" : "SAÍDA" );
+      form.setValue("value", server.value);
     } else {
       form.setValue("description", "");
     }
