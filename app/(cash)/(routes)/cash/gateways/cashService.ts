@@ -87,7 +87,7 @@ const create = async (
     const { data } = await ApiService.post("/cash-flow", dados);
 
     if (data) {
-      toast.success("Tarefa criado com sucesso.");
+      toast.success("Cash flow criado com sucesso.");
       return data.id;
     }
 
@@ -104,7 +104,7 @@ const updateById = async (
 ): Promise<void | Error> => {
   try {
     await ApiService.put(`/cash-flow/${id}`, data);
-    toast.success("Tarefa atualizado com sucesso.");
+    toast.success("Cash flow atualizado com sucesso.");
   } catch (error) {
     handleApiErrors(error as AxiosError, "Erro ao atualizar o registro.");
     throw error;
@@ -114,7 +114,7 @@ const updateById = async (
 const deleteById = async (id: number | undefined): Promise<void | Error> => {
   try {
     await ApiService.delete(`/cash-flow/${id}`, id);
-    toast.success("Tarefa removido com sucesso.");
+    toast.success("Cash flow removido com sucesso.");
   } catch (error) {
     handleApiErrors(error as AxiosError, "Erro ao apagar o registro.");
     throw error;
