@@ -43,7 +43,7 @@ export const routes = [
     color: "text-sky-500",
   },
   {
-    label: "Tarefa",
+    label: "Controle",
     icon: MessageSquare,
     href: "/cash",
     color: "text-violet-500",

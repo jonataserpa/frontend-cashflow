@@ -120,7 +120,7 @@ const TablePage = ({
             <ActionTooltip
               side="right"
               align="center"
-              label="Cadastrar tarefa ?"
+              label="Cadastrar controle financeiro ?"
             >
               <button
                 onClick={() => onOpen("createService")}
@@ -299,7 +299,7 @@ const TablePage = ({
                     <ActionTooltip
                       side="right"
                       align="center"
-                      label="Editar task ?"
+                      label="Editar fatura ?"
                     >
                       <Pencil
                         className="text-teal-700"
@@ -311,7 +311,7 @@ const TablePage = ({
                     <ActionTooltip
                       side="right"
                       align="center"
-                      label="Excluir task ?"
+                      label="Excluir fatura ?"
                     >
                       <Delete
                         className="text-red-500"

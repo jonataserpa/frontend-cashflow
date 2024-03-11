@@ -107,38 +107,6 @@ const HomePage = ({ rows }: any) => {
             <strong>Carregando...</strong>
           </div>
         )}
-
-        {/*rows &&
-          rows.map((tool: ICashFlowProps) => (
-            <div
-              onClick={() => router.push("/cash")}
-              key={tool.id}
-              className="p-4 border-black/5 border-r-4 ring-1 rounded-lg flex items-center justify-between hover:shadow-md transition cursor-pointer"
-              data-testid={tool.description}
-              id="card"
-            >
-              <div className="flex items-center gap-x-4">
-                <div className="p-2 w-fit rounded-md bg-violet-500/10">
-                  <ScreenShare className="w-8 h-8 text-violet-500" />
-                </div>
-                <div className="flex flex-col ...">
-                  <div className="font-semibold">
-                    ID: <label className="text-neutral-500">{tool.id}</label>
-                  </div>
-                  <div className="font-semibold">
-                    Observação:
-                    <label className="text-neutral-500">
-                      {tool.observation}
-                    </label>
-                  </div>
-                  <div className="font-semibold">
-                    Descrição: {validateColorText(tool.description)}
-                  </div>
-                </div>
-              </div>
-              <ArrowRight className="w-5 h-5" />
-            </div>
-          ))*/}
       </div>
     </div>
   );
