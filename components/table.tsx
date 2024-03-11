@@ -286,7 +286,7 @@ const TablePage = ({
             {rows &&
               rows.length > 0 &&
               rows.map((row) => (
-                <TableRow key={row.id}>
+                <TableRow key={row.id} className={row.type === 'ENTRY' ? "text-green-600" : "text-red-400" }>
                   <TableCell className="font-medium">{row.id}</TableCell>
                   <TableCell>{row.description}</TableCell>
                   <TableCell>{row.observation}</TableCell>
