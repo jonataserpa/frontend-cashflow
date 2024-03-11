@@ -41,9 +41,6 @@ const HomePage = ({ rows }: any) => {
         <h2 className="text-2xl md:text-4xl font-bold text-center">
           Fluxo de caixa
         </h2>
-        <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-          Listagem das entradas e saídas
-        </p>
       </div>
 
       <div className="px-4 md:px-20 lg:px-32 space-y-4">
