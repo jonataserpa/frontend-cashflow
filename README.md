@@ -1,10 +1,10 @@
 ## Painel
 
-![Dashboard](https://cdn.discordapp.com/attachments/1083115321935798314/1216463652534882385/image.png?ex=66007b0f&is=65ee060f&hm=34b89387aae91f68900a7cebe55ae4bd43415292913af3c68584d0a564e209e7&)
+![Dashboard](https://cdn.discordapp.com/attachments/1083115321935798314/1216731562389798912/image.png?ex=66017492&is=65eeff92&hm=1eda02ca9f89c0ce995fb97797934356bb7266c8ba776723a8cf43de0f068a7e&)
 
 ## Cadastro
 
-![Cadastro](https://cdn.discordapp.com/attachments/1083115321935798314/1216464003782414397/image.png?ex=66007b63&is=65ee0663&hm=cf5da799d88b88bc1611d3ff52ef1b40bbc509314066c95e86b51ed3646b2312&)
+![Cadastro](https://cdn.discordapp.com/attachments/1083115321935798314/1216731799661580369/image.png?ex=660174ca&is=65eeffca&hm=4fb74a6e505146a5d48c6081a8e5f36a4a3195c01ed5ad94171671d8f0bc19f9&)
 
 ## Description
 
