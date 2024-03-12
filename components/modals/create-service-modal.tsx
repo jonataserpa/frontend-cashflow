@@ -3,6 +3,8 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { NumericFormat } from "react-number-format";
+
 import {
   Dialog,
   DialogContent,
@@ -32,11 +34,14 @@ import { useModal } from "../hooks/use-modal-store";
 import { Button } from "../ui/button";
 import { ICashFlowProps } from "@/app/(cash)/(routes)/cash/interfaces/iCashFlow.interface";
 import { CashFlowService } from "@/app/(cash)/(routes)/cash/services/cashService";
+import { cn } from "@/app/lib/utils";
 
 const formSchema = z.object({
   observation: z.string().optional(),
-  paymentedAt: z.string().min(1, { message: "Data é obrigatório" })
-  .refine((name) => name !== "general", {
+  paymentedAt: z
+    .string()
+    .min(1, { message: "Data é obrigatório" })
+    .refine((name) => name !== "general", {
       message: "Data não pode ser 'generico'",
     }),
   description: z
@@ -66,6 +71,7 @@ export const CreateServiceModal = () => {
   const isModalOpen = isOpen && type === "createService";
   const { server } = data;
   const [_, setIsLoading] = useState(true);
+  const [value, setValue] = useState("");
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -130,6 +136,21 @@ export const CreateServiceModal = () => {
     onClose();
   };
 
+  // Função para formatar o valor como moeda
+  const formatarMoeda = (inputValue: string) => {
+    const val = Number(inputValue.replace(/\D/g, "").replace("0", ""));
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+      minimumFractionDigits: 2,
+    }).format(val);
+  };
+
+  const handleChange = (event: any) => {
+    const newValor = event.target.value;
+    setValue(newValor);
+  };
+
   return (
     <Dialog open={isModalOpen} onOpenChange={handleClose}>
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
@@ -187,13 +208,41 @@ export const CreateServiceModal = () => {
                   <FormItem>
                     <FormLabel>Valor</FormLabel>
                     <FormControl>
-                      <Input
+                      <NumericFormat
+                        {...field}
+                        disabled={isLoading}
+                        className={cn(
+                          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+                          "bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
+                        )}
+                        value={value}
+                        onValueChange={(values) => {
+                          setValue(values.value);
+                          console.log(values);
+                        }}
+                        allowLeadingZeros={false}
+                        decimalScale={2}
+                        fixedDecimalScale={true}
+                        decimalSeparator=","
+                        allowedDecimalSeparators={["."]}
+                        prefix="R$ "
+                        //suffix='$'
+                        thousandSeparator="."
+                        //thousandsGroupStyle='thousand'
+
+                        isAllowed={(values) => {
+                          if (values.value.length > 9) return false;
+                          return true;
+                        }}
+                      />
+                      {/*<input
                         disabled={isLoading}
                         className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
                         placeholder="valor"
                         {...field}
-                        data-testid="value"
-                      />
+                        value={formatarMoeda(field.value)}
+                        //onChange={handleChange}
+                      />*/}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
