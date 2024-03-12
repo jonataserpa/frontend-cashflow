@@ -2,6 +2,8 @@ import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { ICashFlowProps } from "../interfaces/iCashFlow.interface";
 import { ApiService } from "@/components/axios/axios-config";
+import { useRouter } from "next/router";
+import { redirect } from "next/navigation";
 
 export type TTasksWithTotalCount = {
   data: ICashFlowProps[];
@@ -14,7 +16,7 @@ export type directionOfSort = "ASC" | "DESC" | undefined;
  * Handle api errors
  * @param error
  */
-export const handleApiErrors = (error: AxiosError, message: string) => {
+export const HandleApiErrors = (error: AxiosError, message: string) => {
   if (error && error.response && error.response.data) {
     switch (error.response.data.statusCode) {
       case 400:
@@ -60,7 +62,7 @@ const getAll = async (
 
     return new Error("Erro ao listar os registros.");
   } catch (error) {
-    handleApiErrors(error as AxiosError, "Erro ao listar os registros.");
+    HandleApiErrors(error as AxiosError, "Erro ao listar os registros.");
     throw error;
   }
 };
@@ -75,7 +77,7 @@ const getById = async (id: number): Promise<ICashFlowProps | Error> => {
 
     return new Error("Erro ao consultar o registro.");
   } catch (error) {
-    handleApiErrors(error as AxiosError, "Erro ao consultar o registro.");
+    HandleApiErrors(error as AxiosError, "Erro ao consultar o registro.");
     throw error;
   }
 };
@@ -93,7 +95,7 @@ const create = async (
 
     return new Error("Erro ao criar o registro.");
   } catch (error) {
-    handleApiErrors(error as AxiosError, "Erro ao criar o registro.");
+    HandleApiErrors(error as AxiosError, "Erro ao criar o registro.");
     throw error;
   }
 };
@@ -106,7 +108,7 @@ const updateById = async (
     await ApiService.put(`/cash-flow/${id}`, data);
     toast.success("Cash flow atualizado com sucesso.");
   } catch (error) {
-    handleApiErrors(error as AxiosError, "Erro ao atualizar o registro.");
+    HandleApiErrors(error as AxiosError, "Erro ao atualizar o registro.");
     throw error;
   }
 };
@@ -116,7 +118,7 @@ const deleteById = async (id: number | undefined): Promise<void | Error> => {
     await ApiService.delete(`/cash-flow/${id}`, id);
     toast.success("Cash flow removido com sucesso.");
   } catch (error) {
-    handleApiErrors(error as AxiosError, "Erro ao apagar o registro.");
+    HandleApiErrors(error as AxiosError, "Erro ao apagar o registro.");
     throw error;
   }
 };

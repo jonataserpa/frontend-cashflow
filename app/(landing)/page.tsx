@@ -6,7 +6,7 @@ import Navbar from "@/components/ui/navbar";
 import { ICashFlowProps } from "../(cash)/(routes)/cash/interfaces/iCashFlow.interface";
 import { useEffect, useState } from "react";
 import { useDebounce } from "@/components/hooks";
-import { CashFlowService } from "../(cash)/(routes)/cash/gateways/cashService";
+import { CashFlowService } from "../(cash)/(routes)/cash/services/cashService";
 import { routes } from "../constants";
 
 const LandingPage = () => {

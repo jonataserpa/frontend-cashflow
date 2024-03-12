@@ -15,8 +15,20 @@ class AxiosService {
   };
 
   constructor() {
+    let APP_ACCESS_TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiSm9uYXRhIiwicm9sZSI6ImZyZWUiLCJpYXQiOjE3MTAyNjA2NjEsImV4cCI6MTcxMDM0NzA2MX0.wcnh-LBMfu6tocgYVitRnzL2ilrJ5As0ZMBBn5Yn3-U`
+
+    /*if (APP_ACCESS_TOKEN === "undefined") {
+      APP_ACCESS_TOKEN = "";
+      localStorage.removeItem("APP_ACCESS_TOKEN");
+    }*/
+
     const axiosConfig: AxiosRequestConfig = {
       baseURL: Environment.URL_BASE,
+      headers: {
+        Authorization: `Bearer ${
+          APP_ACCESS_TOKEN !== null ? APP_ACCESS_TOKEN : ""
+        }`,
+      },
     };
 
     this.axiosInstance = axios.create(axiosConfig);

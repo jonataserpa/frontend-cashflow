@@ -31,7 +31,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "../hooks/use-modal-store";
 import { Button } from "../ui/button";
 import { ICashFlowProps } from "@/app/(cash)/(routes)/cash/interfaces/iCashFlow.interface";
-import { CashFlowService } from "@/app/(cash)/(routes)/cash/gateways/cashService";
+import { CashFlowService } from "@/app/(cash)/(routes)/cash/services/cashService";
 
 const formSchema = z.object({
   observation: z.string().optional(),

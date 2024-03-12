@@ -36,7 +36,7 @@ import {
 
 import {
   CashFlowService,
-} from "@/app/(cash)/(routes)/cash/gateways/cashService";
+} from "@/app/(cash)/(routes)/cash/services/cashService";
 import { useEffect, useState } from "react";
 import { useDebounce } from "./hooks";
 import { Button } from "./ui/button";

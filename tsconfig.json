@@ -22,7 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "types": ["cypress", "node", "./support"],
   "ts-node": {
     "compilerOptions": {
       "module": "ESNext",
@@ -35,8 +34,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "jest.config.js",
-    "cypress.config.ts",
-    "cypress",
   ],
   "exclude": ["node_modules"]
 }

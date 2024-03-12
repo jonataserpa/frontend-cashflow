@@ -6,7 +6,7 @@ import Sidebar from "@/components/ui/sidebar";
 import { ICashFlowProps } from "./interfaces/iCashFlow.interface";
 import { useEffect, useState } from "react";
 import { useDebounce } from "@/components/hooks";
-import { CashFlowService } from "./gateways/cashService";
+import { CashFlowService } from "./services/cashService";
 import { ModalData, useModal } from "@/components/hooks/use-modal-store";
 import { routes } from "@/app/constants";
 

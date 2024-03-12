@@ -15,7 +15,8 @@ export function authInterceptor(
   // }
 
   // request.headers.Authorization = `Bearer ${authenticationResult.idToken}`;
-  request.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiSm9uYXRhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzA1ODcyMzQ2LCJleHAiOjE3MDU5NTg3NDZ9.hPY-po9DkgvLYZWvPQU8m0rrd0tai0KTMdfNrn_zvJo`;
+  const token = localStorage.getItem("token");
+  request.headers.Authorization = `Bearer ${token}`;
   return request;
 }
 
