@@ -1,9 +1,7 @@
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 import { ICashFlowProps } from "../interfaces/iCashFlow.interface";
-import { ApiService } from "@/components/axios/axios-config";
-import { useRouter } from "next/router";
-import { redirect } from "next/navigation";
+import { ApiServiceFactory } from "@/components/axios/axios-config";
 
 export type TTasksWithTotalCount = {
   data: ICashFlowProps[];
@@ -49,7 +47,8 @@ const getAll = async (
 ): Promise<TTasksWithTotalCount | Error> => {
   try {
     const url = "/cash-flow";
-    const { data } = await ApiService.get(url, {
+    const cashService = await ApiServiceFactory.create();
+    const { data } = await cashService.get(url, {
       params: { skip: 0, take: 10, observation, description, createdAt },
     });
 
@@ -69,7 +68,7 @@ const getAll = async (
 
 const getById = async (id: number): Promise<ICashFlowProps | Error> => {
   try {
-    const { data } = await ApiService.get(`/cash-flow/${id}`);
+    const { data } = await ApiServiceFactory.create().get(`/cash-flow/${id}`);
 
     if (data) {
       return data;
@@ -86,7 +85,7 @@ const create = async (
   dados: Omit<ICashFlowProps, "id">
 ): Promise<string | Error> => {
   try {
-    const { data } = await ApiService.post("/cash-flow", dados);
+    const { data } = await ApiServiceFactory.create().post("/cash-flow", dados);
 
     if (data) {
       toast.success("Cash flow criado com sucesso.");
@@ -105,7 +104,7 @@ const updateById = async (
   data: ICashFlowProps
 ): Promise<void | Error> => {
   try {
-    await ApiService.put(`/cash-flow/${id}`, data);
+    await ApiServiceFactory.create().put(`/cash-flow/${id}`, data);
     toast.success("Cash flow atualizado com sucesso.");
   } catch (error) {
     HandleApiErrors(error as AxiosError, "Erro ao atualizar o registro.");
@@ -115,7 +114,7 @@ const updateById = async (
 
 const deleteById = async (id: number | undefined): Promise<void | Error> => {
   try {
-    await ApiService.delete(`/cash-flow/${id}`, id);
+    await ApiServiceFactory.create().delete(`/cash-flow/${id}`, id);
     toast.success("Cash flow removido com sucesso.");
   } catch (error) {
     HandleApiErrors(error as AxiosError, "Erro ao apagar o registro.");

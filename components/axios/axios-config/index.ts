@@ -1,12 +1,14 @@
 import { Environment } from "@/components/environment";
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import { authInterceptor, loadingAfter, loadingBefore } from "./interceptors/auth.interceptor";
+import {
+  authInterceptor,
+  loadingAfter,
+  loadingBefore,
+} from "./interceptors/auth.interceptor";
 import { errorInterceptor } from "./interceptors/error.interceptor";
 
-
-class AxiosService {
+export class AxiosService {
   axiosInstance: AxiosInstance;
-
   multiPartFormDataConfig: AxiosRequestConfig = {
     baseURL: Environment.URL_BASE,
     headers: {
@@ -15,19 +17,12 @@ class AxiosService {
   };
 
   constructor() {
-    let APP_ACCESS_TOKEN = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsInVzZXJuYW1lIjoiSm9uYXRhIiwicm9sZSI6ImZyZWUiLCJpYXQiOjE3MTAyNjA2NjEsImV4cCI6MTcxMDM0NzA2MX0.wcnh-LBMfu6tocgYVitRnzL2ilrJ5As0ZMBBn5Yn3-U`
-
-    /*if (APP_ACCESS_TOKEN === "undefined") {
-      APP_ACCESS_TOKEN = "";
-      localStorage.removeItem("APP_ACCESS_TOKEN");
-    }*/
+    const APP_ACCESS_TOKEN = this.getToken();
 
     const axiosConfig: AxiosRequestConfig = {
       baseURL: Environment.URL_BASE,
       headers: {
-        Authorization: `Bearer ${
-          APP_ACCESS_TOKEN !== null ? APP_ACCESS_TOKEN : ""
-        }`,
+        Authorization: `Bearer ${APP_ACCESS_TOKEN}`,
       },
     };
 
@@ -36,8 +31,23 @@ class AxiosService {
     this.axiosInstance.interceptors.response.use(loadingAfter);
   }
 
+  getToken() {
+    const cookies = document.cookie.split(";");
+    let token = "";
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(`token=`)) {
+        const value = cookie.split("=");
+        token = value[1];
+      }
+    }
+    return token;
+  }
+
   setBearerToken(bearerToken: string) {
-    this.axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${bearerToken}`;
+    this.axiosInstance.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${bearerToken}`;
   }
 
   /**
@@ -102,6 +112,6 @@ class AxiosService {
   }
 }
 
-const ApiService: AxiosService = new AxiosService();
-
-export { ApiService };
+export const ApiServiceFactory = {
+  create: () => new AxiosService(),
+};

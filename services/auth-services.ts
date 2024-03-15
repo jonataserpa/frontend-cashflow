@@ -1,4 +1,3 @@
-
 import { Environment } from "@/components/environment";
 import { cookies } from "next/headers";
 

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { useEffect } from "react";
-import { AuthService } from "./app/auth/services/auth-services";
+import { AuthService } from "./services/auth-services";
 
 export const config = {
   matcher: "/((?!_next/static|_next/image|favicon.ico).*)",

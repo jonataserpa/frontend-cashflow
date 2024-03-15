@@ -1,4 +1,4 @@
-import LoginPage from "@/app/auth/page";
+import { LoginPage } from "../../../../components/login";
 
 export default function Login() {
 

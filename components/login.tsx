@@ -3,25 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { AuthService } from "./services/auth-services";
+import { AuthService } from "../services/auth-services";
 
-/*const formSchema = z.object({
-  username: z.string()
-    .min(1, { message: "Usuário é obrigatório" })
-    .refine((name) => name !== "general", {
-      message: "Usuário não pode ser 'generico'",
-    }),
-  password: z.string()
-    .min(1, { message: "Senha é obrigatório" })
-    .refine((name) => name !== "general", {
-      message: "Senha não pode ser 'generico'",
-    }),
-});*/
-
-export default function LoginPage() {
-  async function handleAction(formData: FormData) {
+export async function LoginPage() {
+  async function handleAction(formData: FormData) {    
     'use server';
-
+    
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
 

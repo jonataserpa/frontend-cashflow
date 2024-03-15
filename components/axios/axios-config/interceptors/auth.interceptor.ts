@@ -15,8 +15,8 @@ export function authInterceptor(
   // }
 
   // request.headers.Authorization = `Bearer ${authenticationResult.idToken}`;
-  const token = localStorage.getItem("token");
-  request.headers.Authorization = `Bearer ${token}`;
+  /*const token = localStorage.getItem("token");
+  request.headers.Authorization = `Bearer ${token}`;*/
   return request;
 }
 
