@@ -16,11 +16,16 @@
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "**/": [
       "eslint --fix"
     ],
-    "*.{css,scss,less,styl,html,md,json}": [
+    "**/*": [
       "prettier --write"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "prettier"
     ]
   },
   "dependencies": {
@@ -71,6 +76,7 @@
     "cypress": "^13.6.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.1",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-jest-dom": "^5.1.0",
     "eslint-plugin-testing-library": "^6.0.1",

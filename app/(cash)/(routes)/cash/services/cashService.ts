@@ -45,8 +45,6 @@ const getAll = async (
   description: string,
   createdAt: string,
 ): Promise<TTasksWithTotalCount | Error> => {
-
-  
   try {
     const url = "/cash-flow";
     const cashService = await ApiServiceFactory.create();
