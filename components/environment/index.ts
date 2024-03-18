@@ -16,5 +16,4 @@ export const Environment = {
      */
     URL_BASE: "https://nest.jonataserpa.net/api/v1",
     //URL_BASE: "http://localhost:3000/api/v1",
-  };
-  
+};

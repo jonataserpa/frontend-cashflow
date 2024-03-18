@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Button } from "@/components/ui/button";
-import { MobileSidebar } from "../mobile-sidebar";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { MobileSidebar } from "../mobile-sidebar";
 import { ActionTooltip } from "../action-tooltip";
 
 const Navbar = () => {
@@ -16,18 +16,32 @@ const Navbar = () => {
                 <MobileSidebar />
             </Button>
             <div className="flex w-full justify-end">
-            <ActionTooltip side="right" align="center" label={ currentPage === '/' ? "Ir para cadastro ?" : "Voltar para dashboard" }>
-                <Button onClick={() => currentPage === '/' ? router.push('cash') : router.push('/')}>
-                    {currentPage  === '/' ? (
-                        <ArrowRight className="w-5 h-5" />
-                    ): (
-                        <ArrowLeft className="w-5 h-5" />
-                    )}
-                </Button>
-            </ActionTooltip>
-            </div>            
+                <ActionTooltip
+                    side="right"
+                    align="center"
+                    label={
+                        currentPage === "/"
+                            ? "Ir para cadastro ?"
+                            : "Voltar para dashboard"
+                    }
+                >
+                    <Button
+                        onClick={() =>
+                            currentPage === "/"
+                                ? router.push("cash")
+                                : router.push("/")
+                        }
+                    >
+                        {currentPage === "/" ? (
+                            <ArrowRight className="w-5 h-5" />
+                        ) : (
+                            <ArrowLeft className="w-5 h-5" />
+                        )}
+                    </Button>
+                </ActionTooltip>
+            </div>
         </div>
-    )
-}
+    );
+};
 
 export default Navbar;

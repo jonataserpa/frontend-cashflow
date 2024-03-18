@@ -7,4 +7,4 @@ export interface IRows {
     handleDelete: (id: number | undefined) => void;
     handleEdit: (cattles: ICashFlowProps) => void;
     totalCount: number;
-  }
+}
