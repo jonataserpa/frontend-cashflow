@@ -3,7 +3,10 @@
     "next/core-web-vitals",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
-    "plugin:cypress/recommended"
+    "plugin:cypress/recommended",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "plugins": [
     "cypress"
@@ -11,4 +14,10 @@
   "env":{
     "cypress/globals": true
   }
+  /*"rules": {
+    "indent": ["error", 4],
+    "linebreak-style": ["error", "Unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"]
+  }*/
 }
