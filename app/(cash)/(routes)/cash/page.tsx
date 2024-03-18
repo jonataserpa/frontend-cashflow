@@ -13,7 +13,6 @@ import { ICashFlowProps } from "./interfaces/iCashFlow.interface";
 const TaskPage = () => {
     const { onOpen } = useModal();
     const { debounce } = useDebounce();
-    const [setIsLoading] = useState(true);
     const [totalCount, setTotalCount] = useState(0);
     const [rows, setRows] = useState<ICashFlowProps[]>([]);
 
@@ -23,8 +22,6 @@ const TaskPage = () => {
     function getAllServices() {
         debounce(() => {
             CashFlowService.getAll("", "", "").then((result) => {
-                setIsLoading(false);
-
                 if (result instanceof Error) {
                     alert(result.message);
                 } else {
@@ -39,7 +36,6 @@ const TaskPage = () => {
      * Define default values list loading
      */
     useEffect(() => {
-        setIsLoading(true);
         getAllServices();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

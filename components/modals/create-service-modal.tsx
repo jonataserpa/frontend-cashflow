@@ -70,9 +70,7 @@ export const CreateServiceModal = () => {
     const router = useRouter();
     const isModalOpen = isOpen && type === "createService";
     const { server } = data;
-    const [setIsLoading] = useState(true);
     const [value, setValue] = useState("");
-
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -84,6 +82,8 @@ export const CreateServiceModal = () => {
             paymentedAt: "",
         },
     });
+
+    const [isLoading, setIsLoading] = useState(form.formState.isSubmitting);
 
     /**
      * Define default values list loading
@@ -107,8 +107,6 @@ export const CreateServiceModal = () => {
             form.setValue("description", "");
         }
     }, [server, form]);
-
-    const isLoading = form.formState.isSubmitting;
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {

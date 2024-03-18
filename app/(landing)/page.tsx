@@ -12,7 +12,6 @@ import { routes } from "../constants";
 const LandingPage = () => {
     const { debounce } = useDebounce();
     const [rows, setRows] = useState<ICashFlowProps[]>([]);
-    const [setIsLoading] = useState(true);
 
     /**
      * Get all tasks
@@ -20,8 +19,6 @@ const LandingPage = () => {
     function getAllTasks() {
         debounce(() => {
             CashFlowService.getAll("", "", "").then((result) => {
-                setIsLoading(false);
-
                 if (result instanceof Error) {
                     alert(result.message);
                 } else {
@@ -35,7 +32,6 @@ const LandingPage = () => {
      * Define default values list loading
      */
     useEffect(() => {
-        setIsLoading(true);
         getAllTasks();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
