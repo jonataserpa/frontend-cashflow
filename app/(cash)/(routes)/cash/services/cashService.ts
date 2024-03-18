@@ -51,7 +51,7 @@ const getAll = async (
   try {
 
 
-    
+
     const url = "/cash-flow";
     const cashService = await ApiServiceFactory.create();
     const { data } = await cashService.get(url, {
