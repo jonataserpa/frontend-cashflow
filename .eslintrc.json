@@ -3,7 +3,7 @@
     "next/core-web-vitals",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended",
-    "plugin:cypress/recommended",
+    "plugin:cypress/recommended"
   ],
   "plugins": [
     "cypress"
