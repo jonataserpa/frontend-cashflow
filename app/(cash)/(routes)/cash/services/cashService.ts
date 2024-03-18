@@ -19,7 +19,7 @@ export const HandleApiErrors = (error: AxiosError, message: string) => {
     switch (error.response.data.statusCode) {
       case 400:
         toast.error(
-          "Erro ao processar a requisição, verifique os dados enviados e tente novamente!"
+          "Erro ao processar a requisição, verifique os dados enviados e tente novamente!",
         );
         break;
       case 401:
@@ -30,7 +30,7 @@ export const HandleApiErrors = (error: AxiosError, message: string) => {
         break;
       case 500:
         toast.error(
-          "Erro, o servidor não conseguiu processar a requisição, por favor tente novamente mais tarde ou contate o suporte!"
+          "Erro, o servidor não conseguiu processar a requisição, por favor tente novamente mais tarde ou contate o suporte!",
         );
         break;
       default:
@@ -45,13 +45,15 @@ const getAll = async (
   description: string,
   createdAt: string,
 ): Promise<TTasksWithTotalCount | Error> => {
+
+  
   try {
     const url = "/cash-flow";
     const cashService = await ApiServiceFactory.create();
     const { data } = await cashService.get(url, {
       params: { skip: 0, take: 10, observation, description, createdAt },
     });
-
+    console.log("test");
     if (data) {
       return {
         data: data.data,
@@ -82,7 +84,7 @@ const getById = async (id: number): Promise<ICashFlowProps | Error> => {
 };
 
 const create = async (
-  dados: Omit<ICashFlowProps, "id">
+  dados: Omit<ICashFlowProps, "id">,
 ): Promise<string | Error> => {
   try {
     const { data } = await ApiServiceFactory.create().post("/cash-flow", dados);
@@ -101,7 +103,7 @@ const create = async (
 
 const updateById = async (
   id: number | undefined,
-  data: ICashFlowProps
+  data: ICashFlowProps,
 ): Promise<void | Error> => {
   try {
     await ApiServiceFactory.create().put(`/cash-flow/${id}`, data);
