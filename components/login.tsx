@@ -73,7 +73,7 @@ export async function LoginPage() {
                     <Image
                         className="object-cover "
                         fill={true}
-                        src="/Bg.jpg"
+                        src="https://img.freepik.com/fotos-gratis/sistema-html-para-o-conceito-de-site_23-2150376770.jpg?t=st=1710960063~exp=1710963663~hmac=19120d45bce8685e44d44f9bb754d7313accbbf3b14b56d1e6a430e176ba8001&w=1380"
                         alt="bg-image"
                     />
                 </div>

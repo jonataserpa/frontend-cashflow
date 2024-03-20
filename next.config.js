@@ -1,16 +1,12 @@
-/** @type {import('next').NextConfig} */
-const withPWA = require("next-pwa")({
-    dest: "public",
-    cacheOnFrontEndNav: true,
-    reloadOnOnline: true,
-    disable: false,
-    skipWaiting: true,
-  });
-  
-  const nextConfig = withPWA({
-    experimental: {
-      newNextLinkBehavior: true,
+module.exports = {
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "img.freepik.com",
+                port: "",
+                pathname: "/fotos-gratis/**",
+            },
+        ],
     },
-  });
-
-module.exports = nextConfig
+};
