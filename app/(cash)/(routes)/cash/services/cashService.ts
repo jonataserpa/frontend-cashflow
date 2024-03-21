@@ -22,7 +22,7 @@ export const HandleApiErrors = (error: any, message: string) => {
                     "Erro ao processar a requisição, verifique os dados enviados e tente novamente!",
                 );
                 break;
-            case 401:
+            case 403:
                 toast.error("Unauthorized, por favor realize o login!!!");
                 break;
             case 404:

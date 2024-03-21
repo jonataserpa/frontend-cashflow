@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import TablePage from "@/components/table";
 import Navbar from "@/components/ui/navbar";
 import Sidebar from "@/components/ui/sidebar";
-import { useDebounce } from "@/components/hooks";
 import { ModalData, useModal } from "@/components/hooks/use-modal-store";
 import { routes } from "@/app/constants";
 import { CashFlowService } from "./services/cashService";
@@ -12,16 +12,13 @@ import { ICashFlowProps } from "./interfaces/iCashFlow.interface";
 
 const TaskPage = () => {
     const { onOpen } = useModal();
-    const { debounce } = useDebounce();
     const [totalCount, setTotalCount] = useState(0);
     const [rows, setRows] = useState<ICashFlowProps[]>([]);
 
-    /**
-     * Get all cash
-     */
-    function getAllServices() {
-        debounce(() => {
-            CashFlowService.getAll("", "", "").then((result) => {
+    const { isLoading, refetch } = useQuery(
+        "cash-flow",
+        () => {
+            return CashFlowService.getAll("", "", "").then((result) => {
                 if (result instanceof Error) {
                     alert(result.message);
                 } else {
@@ -29,16 +26,16 @@ const TaskPage = () => {
                     setRows(result.data);
                 }
             });
-        });
-    }
+        },
+        {
+            retry: 5,
+            refetchInterval: 5000,
+        },
+    );
 
-    /**
-     * Define default values list loading
-     */
-    useEffect(() => {
-        getAllServices();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    if (isLoading) {
+        return <div className="loading">Carregando...</div>;
+    }
 
     /**
      * Handle delete item
@@ -54,7 +51,7 @@ const TaskPage = () => {
                         ...oldRows.filter((oldRow) => oldRow.id !== id),
                     ]);
                     setTotalCount(rows.length);
-                    getAllServices();
+                    refetch();
                 }
             });
         }

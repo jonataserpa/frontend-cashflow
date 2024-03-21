@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { CreateServiceModal } from "@/components/modals/create-service-modal";
 import Toast from "@/components/toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-    manifest: "/manifest.json",
-    title: "Cash flow",
-    description: "Cash flow - finances",
-};
+const queryClient = new QueryClient();
 
 export default function RootLayout({
     children,
@@ -22,7 +20,9 @@ export default function RootLayout({
             <body className={inter.className}>
                 <Toast />
                 <CreateServiceModal />
-                {children}
+                <QueryClientProvider client={queryClient}>
+                    {children}
+                </QueryClientProvider>
             </body>
         </html>
     );
