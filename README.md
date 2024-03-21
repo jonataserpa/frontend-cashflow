@@ -2,7 +2,7 @@
 
 Link: [https://frontend-cashflow-gutulw2qj-jonataserpa.vercel.app] https://frontend-cashflow-gutulw2qj-jonataserpa.vercel.app
 
-## Login 
+## Login
 
 ![Login](https://raw.githubusercontent.com/jonataserpa/images/main/login-cashflow.png)
 
@@ -16,28 +16,25 @@ Link: [https://frontend-cashflow-gutulw2qj-jonataserpa.vercel.app] https://front
 
 ## Description
 
-Frontend projeto: Lista Defensoria do Estado do Rio Grande do Sul
-- Front: React.js v.18
-- Framework: Next.js v.14
-- UI: radix-ui
-- Icons: lucide-react
-- CSS: tailwind - Responsible (Mobile)
-- Validation: useForm e zod
-- Gerenciamento de estado: zustand
-- Test-unitario: Jest 
-- Test e2e: Cypress
-- Mock: Json-server
-- Docker e docker-compose
+Frontend projeto: Controle de Fluxo de caixa
 
-Obs: - Tratamentos de erros da api: handleApiErrors (400, 404, 500)
-     - Camada de Service separado por ServiceGateway e interfaces:
-        - getAll, create, getById, updateById, deleteById
-     - hooks personalizados
-        - useDebounce e modal
-     - Contants e Componentes separadas e organizadas;   
+-   Front: React.js v.18
+-   Framework: Next.js v.14
+-   UI: radix-ui
+-   Icons: lucide-react
+-   CSS: tailwind - Responsible (Mobile)
+-   Validation: useForm e zod
+-   Gerenciamento de estado: zustand
+-   Test-unitario: Jest
+-   Test e2e: Cypress
+-   Mock: Json-server
+-   Docker e docker-compose
+
+Obs: - Tratamentos de erros da api: handleApiErrors (400, 404, 500) - Camada de Service separado por ServiceGateway e interfaces: - getAll, create, getById, updateById, deleteById - hooks personalizados - useDebounce e modal - Contants e Componentes separadas e organizadas;
 
 ## Cash flow
- - CRUD: Modal e Form inputs use radix-ui 
+
+-   CRUD: Modal e Form inputs use radix-ui
 
 ## Installation
 
@@ -57,7 +54,7 @@ $ npm run dev
 # test
 $ npm test
 
-# se desejar usar uma imagem docker: 
+# se desejar usar uma imagem docker:
 # docker-compose permissao
 $ npm sudo chmod +x .docker/entrypoint.sh
 
@@ -65,4 +62,3 @@ $ npm sudo chmod +x .docker/entrypoint.sh
 $ sudo docker-compose up
 
 ```
-
