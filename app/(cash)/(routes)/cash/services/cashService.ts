@@ -14,7 +14,7 @@ export type directionOfSort = "ASC" | "DESC" | undefined;
  * Handle api errors
  * @param error
  */
-export const HandleApiErrors = (error: AxiosError, message: string) => {
+export const HandleApiErrors = (error: any, message: string) => {
     if (error && error.response && error.response.data) {
         switch (error.response.data.statusCode) {
             case 400:
