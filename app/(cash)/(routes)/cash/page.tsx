@@ -29,7 +29,7 @@ const TaskPage = () => {
         },
         {
             retry: 5,
-            refetchInterval: 5000,
+            refetchInterval: 100000,
         },
     );
 
@@ -60,11 +60,11 @@ const TaskPage = () => {
     /**
      * Edit task modal dialog
      */
-    function handleEdit(service: ICashFlowProps) {
-        const serviceValue: ModalData = {
-            server: service,
+    function handleEdit(cash: ICashFlowProps) {
+        const cashValue: ModalData = {
+            server: cash,
         };
-        onOpen("createService", serviceValue);
+        onOpen("editCash", cashValue);
     }
 
     return (

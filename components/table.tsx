@@ -107,7 +107,7 @@ const TablePage = ({
                             label="Cadastrar controle financeiro ?"
                         >
                             <button
-                                onClick={() => onOpen("createService")}
+                                onClick={() => onOpen("createCash")}
                                 className="group flex items-center "
                                 data-testid="create-service"
                             >
