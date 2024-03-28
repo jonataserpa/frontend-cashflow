@@ -4,6 +4,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { NumericFormat } from "react-number-format";
+import { format } from "date-fns/format";
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -68,9 +69,9 @@ const types = [
 export const CreateServiceModal = () => {
     const { isOpen, onClose, type, data } = useModal();
     const router = useRouter();
-    const isModalOpen = isOpen && type === "createService";
+    const isModalOpen =
+        (isOpen && type === "createCash") || (isOpen && type === "editCash");
     const { server } = data;
-    const [value, setValue] = useState("");
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -102,7 +103,10 @@ export const CreateServiceModal = () => {
                 server.type === "ENTRY" ? "ENTRADA" : "SAÍDA",
             );
             form.setValue("value", server.value);
-            form.setValue("paymentedAt", server.paymentedAt.toString());
+            form.setValue(
+                "paymentedAt",
+                format(server.paymentedAt, "yyyy-MM-dd"),
+            );
         } else {
             form.setValue("description", "");
         }
@@ -201,10 +205,9 @@ export const CreateServiceModal = () => {
                                                     "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
                                                     "bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0",
                                                 )}
-                                                value={value}
-                                                onValueChange={(values) => {
-                                                    setValue(values.value);
-                                                }}
+                                                onValueChange={(values) =>
+                                                    values.value
+                                                }
                                                 allowLeadingZeros={false}
                                                 decimalScale={2}
                                                 fixedDecimalScale={true}
@@ -221,14 +224,6 @@ export const CreateServiceModal = () => {
                                                     return true;
                                                 }}
                                             />
-                                            {/*<input
-                        disabled={isLoading}
-                        className="bg-zinc-300/50 border-0 focus-visible:ring-0 text-black focus-visible:ring-offset-0"
-                        placeholder="valor"
-                        {...field}
-                        value={formatarMoeda(field.value)}
-                        //onChange={handleChange}
-                      />*/}
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -278,7 +273,7 @@ export const CreateServiceModal = () => {
                                                     <SelectItem
                                                         key={type.id}
                                                         id={type.id.toString()}
-                                                        value={type.id.toString()}
+                                                        value={type.name}
                                                     >
                                                         {type.name}
                                                     </SelectItem>

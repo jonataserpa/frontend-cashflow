@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { ICashFlowProps } from "@/app/(cash)/(routes)/cash/interfaces/iCashFlow.interface";
 
-export type ModalType = "createService" | "editService" | "deleteService";
+export type ModalType = "createCash" | "editCash" | "deleteCash";
 
 export interface ModalData {
     server?: ICashFlowProps;
