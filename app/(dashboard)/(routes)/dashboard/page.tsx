@@ -6,8 +6,11 @@ import {
     ArrowUpFromLineIcon,
     AlignStartVerticalIcon,
 } from "lucide-react";
+import { useQuery } from "react-query";
+import { useState } from "react";
 import { ICashFlowProps } from "@/app/(cash)/(routes)/cash/interfaces/iCashFlow.interface";
 import BarChart from "@/components/chart";
+import { CashFlowService } from "@/app/(cash)/(routes)/cash/services/cashService";
 
 export type IHomeProps = {
     rows?: ICashFlowProps[];
@@ -15,6 +18,40 @@ export type IHomeProps = {
 
 const HomePage = ({ rows }: any) => {
     const router = useRouter();
+    const [totalCountIn, setTotalCountIn] = useState(0);
+    const [totalCountOu, setTotalCountOu] = useState(0);
+    const [totalCount, setTotalCount] = useState(0);
+
+    const { isLoading } = useQuery(
+        "cash-flow",
+        () => {
+            return CashFlowService.getTotal().then((result) => {
+                if (result instanceof Error) {
+                    alert(result.message);
+                } else {
+                    setTotalCountIn(result.data.sum);
+                    setTotalCountOu(result.data.min);
+                    setTotalCount(result.data.total);
+                }
+            });
+        },
+        {
+            retry: 5,
+            refetchInterval: 100000,
+        },
+    );
+
+    if (isLoading) {
+        return <div className="loading">Carregando...</div>;
+    }
+
+    function numberFormarIntl(valor: number) {
+        return new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+            minimumFractionDigits: 2,
+        }).format(valor);
+    }
 
     return (
         <div>
@@ -40,7 +77,7 @@ const HomePage = ({ rows }: any) => {
                                 <div className="font-semibold">
                                     Entrada:{" "}
                                     <label className="text-neutral-500">
-                                        R$ 5000
+                                        {numberFormarIntl(totalCountIn)}
                                     </label>
                                 </div>
                             </div>
@@ -61,7 +98,7 @@ const HomePage = ({ rows }: any) => {
                                 <div className="font-semibold">
                                     Saída:{" "}
                                     <label className="text-neutral-500">
-                                        R$ 7000
+                                        {numberFormarIntl(totalCountOu)}
                                     </label>
                                 </div>
                             </div>
@@ -82,7 +119,7 @@ const HomePage = ({ rows }: any) => {
                                 <div className="font-semibold">
                                     Total:{" "}
                                     <label className="text-neutral-500">
-                                        R$ -2000
+                                        {numberFormarIntl(totalCount)}
                                     </label>
                                 </div>
                             </div>
