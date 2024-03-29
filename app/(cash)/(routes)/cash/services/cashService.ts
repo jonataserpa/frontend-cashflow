@@ -65,6 +65,24 @@ const getAll = async (
     }
 };
 
+const getTotal = async (): Promise<any | Error> => {
+    try {
+        const url = "/cash-flow/totalCashFlows";
+        const cashService = await ApiServiceFactory.create();
+        const { data } = await cashService.get(url);
+        if (data) {
+            return {
+                data: data,
+            };
+        }
+
+        return new Error("Erro ao listar os registros.");
+    } catch (error) {
+        HandleApiErrors(error as AxiosError, "Erro ao listar os registros.");
+        throw error;
+    }
+};
+
 const getById = async (id: number): Promise<ICashFlowProps | Error> => {
     try {
         const { data } = await ApiServiceFactory.create().get(
@@ -132,4 +150,5 @@ export const CashFlowService = {
     getById,
     updateById,
     deleteById,
+    getTotal,
 };
