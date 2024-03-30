@@ -1,26 +1,6 @@
 import { render } from "@testing-library/react";
-import { ICashFlowProps } from "@/app/(cash)/(routes)/cash/interfaces/iCashFlow.interface";
 import HomePage from "../page";
 import "@testing-library/jest-dom";
-
-const mockTodos: ICashFlowProps[] = [
-    {
-        id: 1,
-        observation: "TEST",
-        description: "Luz",
-        type: "ENTRY",
-        value: 1,
-        companyId: 1,
-    },
-    {
-        id: 2,
-        observation: "TEST",
-        description: "Aluguel",
-        type: "ENTRY",
-        value: 1,
-        companyId: 1,
-    },
-];
 
 // Mock useRouter:
 jest.mock("next/navigation", () => ({
@@ -34,7 +14,7 @@ jest.mock("next/navigation", () => ({
 describe("HomePage - List services", () => {
     it('should render "No services" when the array is empty', () => {
         // ARRANGE
-        render(<HomePage rows={[]} />);
+        render(<HomePage />);
 
         //ACT
         //const message = screen.getByText("Carregando serviços...");
@@ -45,7 +25,7 @@ describe("HomePage - List services", () => {
 
     it("should render a list services with the correct number of items", async () => {
         // ARRANGE
-        render(<HomePage rows={mockTodos} />);
+        render(<HomePage />);
 
         // ACT
         //const firstItem = screen.getAllByTestId("SERPRO")[0];
