@@ -10,7 +10,36 @@ import { routes } from "@/app/constants";
 import { CashFlowService } from "./services/cashService";
 import { ICashFlowProps } from "./interfaces/iCashFlow.interface";
 
-const TaskPage = () => {
+type TPageProps = {
+    searchParams?: { page?: string; limit?: string };
+};
+
+const validatePage = (page: string | undefined): number => {
+    if (!page || 0) {
+        return 0;
+    }
+    if (Number(page) === 1) {
+        return 0;
+    }
+    if (Number(page) === 2) {
+        return 10;
+    }
+    if (Number(page) === 3) {
+        return 20;
+    }
+    if (Number(page) === 4) {
+        return 30;
+    }
+    if (Number(page) === 5) {
+        return 40;
+    }
+    return 0;
+};
+
+const TaskPage = ({ searchParams }: TPageProps) => {
+    const page = validatePage(searchParams?.page);
+    const limit = Number(searchParams?.limit) || 10;
+
     const { onOpen } = useModal();
     const [totalCount, setTotalCount] = useState(0);
     const [rows, setRows] = useState<ICashFlowProps[]>([]);
@@ -18,14 +47,16 @@ const TaskPage = () => {
     const { isLoading, refetch } = useQuery(
         "cash-flow",
         () => {
-            return CashFlowService.getAll("", "", "").then((result) => {
-                if (result instanceof Error) {
-                    alert(result.message);
-                } else {
-                    setTotalCount(result.totalCount);
-                    setRows(result.data);
-                }
-            });
+            return CashFlowService.getAll("", "", "", page, limit).then(
+                (result) => {
+                    if (result instanceof Error) {
+                        alert(result.message);
+                    } else {
+                        setTotalCount(result.totalCount);
+                        setRows(result.data);
+                    }
+                },
+            );
         },
         {
             retry: 5,
@@ -80,6 +111,8 @@ const TaskPage = () => {
                     handleDelete={handleDelete}
                     handleEdit={handleEdit}
                     totalCount={totalCount}
+                    page={page}
+                    limit={limit}
                 />
             </main>
         </div>

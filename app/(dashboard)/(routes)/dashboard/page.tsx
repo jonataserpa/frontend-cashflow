@@ -8,15 +8,10 @@ import {
 } from "lucide-react";
 import { useQuery } from "react-query";
 import { useState } from "react";
-import { ICashFlowProps } from "@/app/(cash)/(routes)/cash/interfaces/iCashFlow.interface";
 import BarChart from "@/components/chart";
 import { CashFlowService } from "@/app/(cash)/(routes)/cash/services/cashService";
 
-export type IHomeProps = {
-    rows?: ICashFlowProps[];
-};
-
-const HomePage = ({ rows }: any) => {
+const HomePage = () => {
     const router = useRouter();
     const [totalCountIn, setTotalCountIn] = useState(0);
     const [totalCountOu, setTotalCountOu] = useState(0);
@@ -42,7 +37,11 @@ const HomePage = ({ rows }: any) => {
     );
 
     if (isLoading) {
-        return <div className="loading">Carregando...</div>;
+        return (
+            <div className="text-muted-foreground font-light text-sm md:text-lg text-center">
+                <strong>Carregando...</strong>
+            </div>
+        );
     }
 
     function numberFormarIntl(valor: number) {
@@ -128,12 +127,6 @@ const HomePage = ({ rows }: any) => {
                 </div>
 
                 <BarChart />
-
-                {rows && rows.length === 0 && (
-                    <div className="text-muted-foreground font-light text-sm md:text-lg text-center">
-                        <strong>Carregando...</strong>
-                    </div>
-                )}
             </div>
         </div>
     );
