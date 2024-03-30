@@ -38,7 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, limit, total }) => {
         <ShardsPagination>
             <PaginationContent>
                 <PaginationItem>
-                    <PaginationPrevious href="#" />
+                    <PaginationPrevious href="/cash?page=1" />
                 </PaginationItem>
                 {pages.map((p, index) => {
                     const isEllipsis =
@@ -69,7 +69,7 @@ const Pagination: React.FC<PaginationProps> = ({ page, limit, total }) => {
                     <PaginationEllipsis />
                 </PaginationItem>
                 <PaginationItem>
-                    <PaginationNext href="#" />
+                    <PaginationNext href={`/cash?page=${pages.length}`} />
                 </PaginationItem>
             </PaginationContent>
         </ShardsPagination>
