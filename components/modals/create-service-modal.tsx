@@ -118,7 +118,7 @@ export const CreateServiceModal = () => {
                 description: values.description,
                 observation: values.observation,
                 value: values.value,
-                type: values.type === "1" ? "ENTRY" : "EXIT",
+                type: values.type === "ENTRADA" ? "ENTRY" : "EXIT",
                 companyId: 1,
                 paymentedAt: values.paymentedAt,
             };
@@ -129,7 +129,7 @@ export const CreateServiceModal = () => {
             }
             form.reset();
             router.refresh();
-            router.push("/");
+            router.push("/cash");
             onClose();
         } catch (error) {}
     };
@@ -217,7 +217,7 @@ export const CreateServiceModal = () => {
                                                 //suffix='$'
                                                 thousandSeparator="."
                                                 //thousandsGroupStyle='thousand'
-
+                                                placeholder="Valor"
                                                 isAllowed={(values) => {
                                                     if (values.value.length > 9)
                                                         return false;

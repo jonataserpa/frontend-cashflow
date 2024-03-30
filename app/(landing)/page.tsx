@@ -18,7 +18,7 @@ const LandingPage = () => {
      */
     function getAllTasks() {
         debounce(() => {
-            CashFlowService.getAll("", "", "").then((result) => {
+            CashFlowService.getAll("", "", "", 0, 10).then((result) => {
                 if (result instanceof Error) {
                     alert(result.message);
                 } else {

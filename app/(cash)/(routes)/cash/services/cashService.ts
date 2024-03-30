@@ -44,12 +44,20 @@ const getAll = async (
     observation: string,
     description: string,
     createdAt: string,
+    page: number,
+    limit: number,
 ): Promise<TTasksWithTotalCount | Error> => {
     try {
         const url = "/cash-flow";
         const cashService = await ApiServiceFactory.create();
         const { data } = await cashService.get(url, {
-            params: { skip: 0, take: 10, observation, description, createdAt },
+            params: {
+                skip: page,
+                take: limit,
+                observation,
+                description,
+                createdAt,
+            },
         });
         if (data) {
             return {

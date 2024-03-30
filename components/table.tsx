@@ -28,6 +28,7 @@ import { IRows } from "@/app/(cash)/(routes)/cash/interfaces/iRows.interface";
 import { useModal } from "./hooks/use-modal-store";
 import { ActionTooltip } from "./action-tooltip";
 import { Button } from "./ui/button";
+import Pagination from "./pagination";
 
 const formSchema = z.object({
     observation: z
@@ -51,6 +52,8 @@ const TablePage = ({
     handleDelete,
     handleEdit,
     totalCount,
+    page,
+    limit,
 }: IRows) => {
     const { onOpen } = useModal();
 
@@ -63,10 +66,6 @@ const TablePage = ({
         },
     });
 
-    if (rows && rows.length === 0) {
-        return <div style={{ marginLeft: 20 }}>Nenhum caixa cadastrado...</div>;
-    }
-
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const filter = {
@@ -78,6 +77,8 @@ const TablePage = ({
                 filter.observation,
                 filter.description,
                 filter.createdAt,
+                0,
+                10,
             );
             setRows(result.data);
             form.reset();
@@ -337,6 +338,7 @@ const TablePage = ({
                         </div>
                     </TableCaption>
                 </Table>
+                <Pagination page={page} limit={limit} total={totalCount} />
             </div>
         </div>
     );
