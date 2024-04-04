@@ -77,14 +77,14 @@ const TaskPage = ({ searchParams }: TPageProps) => {
             CashFlowService.deleteById(id).then((result) => {
                 if (result instanceof Error) {
                     alert(result.message);
-                } else {
-                    setRows((oldRows) => [
-                        ...oldRows.filter((oldRow) => oldRow.id !== id),
-                    ]);
-                    setTotalCount(rows.length);
-                    refetch();
+                    return;
                 }
+                setTotalCount(rows.length);
+                refetch();
             });
+            setRows((oldRows) => [
+                ...oldRows.filter((oldRow) => oldRow.id !== id),
+            ]);
         }
     };
 
