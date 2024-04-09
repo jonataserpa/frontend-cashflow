@@ -49,7 +49,7 @@ const getAll = async (
 ): Promise<TTasksWithTotalCount | Error> => {
     try {
         const url = "/cash-flow";
-        const cashService = await ApiServiceFactory.create();
+        const cashService = ApiServiceFactory.create();
         const { data } = await cashService.get(url, {
             params: {
                 skip: page,
@@ -76,7 +76,7 @@ const getAll = async (
 const getTotal = async (): Promise<any | Error> => {
     try {
         const url = "/cash-flow/totalCashFlows";
-        const cashService = await ApiServiceFactory.create();
+        const cashService = ApiServiceFactory.create();
         const { data } = await cashService.get(url);
         if (data) {
             return {
